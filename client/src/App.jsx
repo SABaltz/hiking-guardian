@@ -6,7 +6,7 @@ function App() {
     const handleClick = async () => {
         try {
             // Replace the URL with your server API endpoint
-            const response = await fetch('http://localhost:3001/api/test-db', {
+            const response = await fetch('http://localhost:3001/api/test-users', {
                 method: 'GET', // or 'POST' if you are sending data
                 headers: {
                     'Content-Type': 'application/json',
