@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import {Button} from "@mui/material";
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const handleClick = async () => {
+        try {
+            // Replace the URL with your server API endpoint
+            const response = await fetch('http://localhost:3001/api/test-db', {
+                method: 'GET', // or 'POST' if you are sending data
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log(result);
+        } catch (err) {
+            console.log(err.message);
+        }
+    };
+
+    return (
+        <>
+            <Button onClick={handleClick}>test</Button>
+        </>
+    )
 }
 
 export default App
