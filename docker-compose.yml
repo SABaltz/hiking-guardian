@@ -13,7 +13,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     networks:
-      - frontend
+      - hiking-guardian
 
   server:
     build:
@@ -27,7 +27,7 @@ services:
     depends_on:
       - postgres
     networks:
-      - backend
+      - hiking-guardian
 
   postgres:
     image: postgres:13
@@ -40,11 +40,10 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
-      - backend
+      - hiking-guardian
 
 volumes:
   postgres-data:
 
 networks:
-  frontend:
-  backend:
+  hiking-guardian:
