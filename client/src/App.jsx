@@ -27,6 +27,7 @@ function App() {
     return (
         <>
             <Button onClick={handleClick}>test</Button>
+            <NavBar/>
         </>
     )
 }
