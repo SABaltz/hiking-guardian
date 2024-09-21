@@ -6,7 +6,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - "5173:5173"
+      - "3000:3000"
     volumes:
       - ./client:/app
       - /app/node_modules
@@ -20,31 +20,31 @@ services:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
       - ./server:/app
       - /app/node_modules
-#    depends_on:
-#      - postgres
+    depends_on:
+      - postgres
     networks:
       - backend
-#
-#  postgres:
-#    image: postgres:13
-#    environment:
-#      POSTGRES_USER: postgres
-#      POSTGRES_PASSWORD: postgres
-#      POSTGRES_DB: hiking_guardian
-#    ports:
-#      - "5432:5432"
-#    volumes:
-#      - postgres-data:/var/lib/postgresql/data
-#    networks:
-#      - backend
-#
-#volumes:
-#  postgres-data:
-#
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hiking_guardian
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+volumes:
+  postgres-data:
+
 networks:
   frontend:
   backend:
