@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
-
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const {Pool} = require('pg')
 
 const pool = new Pool({
@@ -12,13 +13,33 @@ const pool = new Pool({
 });
 
 router.get('/test-db', async (req, res) => {
-    const result = await pool.query('SELECT NOW()');
-    res.json(result.rows);
+    try {
+        const result = await pool.query('SELECT NOW()');
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ error: 'Database connection error' });
+    }
 });
 
-router.get('/test-users', async (req, res) => {
-    const result = await pool.query('SELECT * FROM users;');
-    res.json(result.rows);
+router.post('/login', async (req, res) => {
+    console.log(req.body)
+    const { username, password } = req.body;
+    try {
+        const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+        if (result.rows.length === 0) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+        const user = result.rows[0];
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+        const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
+        res.json({ token });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error' });
+    }
 });
 
 module.exports = router;
