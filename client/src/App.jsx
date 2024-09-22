@@ -1,31 +1,21 @@
 import NavBar from "./components/NavBar.jsx";
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Login from "./components/Login.jsx";
 
 function App() {
-
-    const handleClick = async () => {
-        try {
-            // Replace the URL with your server API endpoint
-            const response = await fetch('http://localhost:3001/api/test-users', {
-                method: 'GET', // or 'POST' if you are sending data
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
-            }
-
-            const result = await response.json();
-            console.log(result);
-        } catch (err) {
-            console.log(err.message);
-        }
-    };
-
+    // const response = await fetch('http://localhost:3001/api/test-users', {
     return (
         <>
             <NavBar/>
+            <Router>
+                {/*<Link to="/">Home</Link>*/}
+                <Routes>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/register" element={<Login/>}/>
+                    <Route path="/home" element={<Login/>}/>
+                    <Route path="/about" element={<Login/>}/>
+                </Routes>
+            </Router>
         </>
     )
 }
