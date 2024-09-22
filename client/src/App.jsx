@@ -1,4 +1,3 @@
-import {Button} from "@mui/material";
 import NavBar from "./components/NavBar.jsx";
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
     return (
         <>
             <NavBar/>
-            <Button onClick={handleClick}>test</Button>
         </>
     )
 }
