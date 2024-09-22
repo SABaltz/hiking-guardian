@@ -1,5 +1,5 @@
-import './App.css'
 import {Button} from "@mui/material";
+import NavBar from "./components/NavBar.jsx";
 
 function App() {
 
@@ -26,8 +26,8 @@ function App() {
 
     return (
         <>
-            <Button onClick={handleClick}>test</Button>
             <NavBar/>
+            <Button onClick={handleClick}>test</Button>
         </>
     )
 }
