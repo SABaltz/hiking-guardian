@@ -4,7 +4,7 @@ import {useState} from "react";
 import Button from "@mui/material/Button";
 
 function Login() {
-    const [setToken] = useState(null);
+    const [token, setToken] = useState(null);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 

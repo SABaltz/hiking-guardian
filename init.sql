@@ -8,6 +8,6 @@ CREATE TABLE IF NOT EXISTS users
 
 -- Insert some users
 INSERT INTO users (username, password)
-VALUES ('john_doe', 'password123');
+VALUES ('john', '$2a$10$kJEanFctS/tRWtO8pnXTgON6Dzff3kCWtCRJa7f1cTeyTIvmr11SC');
 INSERT INTO users (username, password)
-VALUES ('jane_doe', 'mysecurepassword');
+VALUES ('jane', '$2a$10$UJDwJWWbb1fjkQhGrOjkq.oWqmNVlGFA.9XjwCGy5HtxxfUieFB0K');
