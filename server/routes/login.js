@@ -26,7 +26,7 @@ router.get('/test-db', async (req, res) => {
     }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/', async (req, res) => {
     const {username, password} = req.body;
     try {
         const result = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
