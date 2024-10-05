@@ -9,7 +9,6 @@ import {ThemeProvider} from "@mui/material";
 import theme from "./theme.js";
 
 function App() {
-    // const response = await fetch('http://localhost:3001/api/test-users', {
     return (
         <ThemeProvider theme={theme}>
             <NavBar/>

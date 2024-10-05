@@ -1,6 +1,7 @@
-import {Container, Grid2, TextField} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import {useState} from "react";
+import Grid from '@mui/material/Grid2';
+import {TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 
 function Login() {
@@ -65,46 +66,63 @@ function Login() {
     };
 
     return (
-        <Container maxWidth="xs">
-            <Grid2 container spacing={2} justifyContent="center" style={{marginTop: "50px"}}>
-                <Grid2 xs={12}>
-                    <Typography variant="h4" align="center">
-                        Login
-                    </Typography>
-                </Grid2>
-                <Grid2 xs={12}>
-                    <TextField
-                        fullWidth
-                        label="Username"
-                        name="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        variant="outlined"
-                    />
-                </Grid2>
-                <Grid2 xs={12}>
-                    <TextField
-                        fullWidth
-                        label="Password"
-                        name="password"
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        variant="outlined"
-                    />
-                </Grid2>
-                <Grid2 xs={12}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        onClick={handleSubmit}>
-                        Login
-                    </Button>
-                </Grid2>
-            </Grid2>
-            <Button onClick={handleProtected}>Protected</Button>
-        </Container>
+
+        <Grid container rowSpacing={1} columnSpacing={{xs: 1, sm: 2, md: 3}}>
+            <Grid size={6}>
+                <Typography variant="h4" align="center">
+                    Login
+                </Typography>
+            </Grid>
+            <Grid size={6}>
+                <TextField
+                    fullWidth
+                    label="Username"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    variant="outlined"
+                />
+            </Grid>
+            <Grid size={6}>
+                <TextField
+                    fullWidth
+                    label="Username"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    variant="outlined"
+                />
+            </Grid>
+            <Grid size={6}>
+                <TextField
+                    fullWidth
+                    label="Password"
+                    name="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    variant="outlined"
+                />
+            </Grid>
+            <Grid size={6}>
+                <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSubmit}>
+                    Login
+                </Button>
+            </Grid>
+            <Grid size={6}>
+                <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={handleProtected}>
+                    Protected
+                </Button>
+            </Grid>
+        </Grid>
     )
 }
 
