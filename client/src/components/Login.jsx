@@ -27,12 +27,40 @@ function Login() {
             if (response.ok) {
                 console.log(response)
                 setToken(data.token);
-                localStorage.setItem('token', data.token); // Save JWT token to localStorage
+                // localStorage.setItem('token', data.token); // Save JWT token to localStorage
             } else {
                 console.error('Login failed:', data.error);
             }
         } catch (error) {
             console.error('Login error:', error);
+        }
+    };
+
+    const handleProtected = async (e) => {
+        e.preventDefault();
+        // const storedToken = localStorage.getItem('token'); // Retrieve token from localStorage
+
+        if (!token) {
+            console.error('No token found. Please log in.');
+            return;
+        }
+        try {
+            const response = await fetch('http://localhost:3001/protected', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`, // Send the token in the Authorization header
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Protected data:', data);
+            } else {
+                console.error('Access to protected route failed');
+            }
+        } catch (error) {
+            console.error('Error accessing protected route:', error);
         }
     };
 
@@ -75,6 +103,7 @@ function Login() {
                     </Button>
                 </Grid2>
             </Grid2>
+            <Button onClick={handleProtected}>Protected</Button>
         </Container>
     )
 }

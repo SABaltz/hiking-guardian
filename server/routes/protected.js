@@ -1,9 +1,15 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs'); // Optional, for password hashing
-const app = express();
+let router = express.Router();
 require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
+
+router.get('/', authenticateToken, (req, res) => {
+    res.json({
+        message: 'This is a protected route',
+        user: req.user,
+    });
+});
 
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
@@ -20,9 +26,4 @@ function authenticateToken(req, res, next) {
     });
 }
 
-app.get('/protected', authenticateToken, (req, res) => {
-    res.json({
-        message: 'This is a protected route',
-        user: req.user,
-    });
-});
+module.exports = router;
