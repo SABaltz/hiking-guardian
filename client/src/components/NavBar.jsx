@@ -24,7 +24,8 @@ function NavBar() {
                     <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                         Hiking Guardian
                     </Typography>
-                    <Button color="inherit">Login</Button>
+
+                    <Button href={'/login'} color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
         </Box>
