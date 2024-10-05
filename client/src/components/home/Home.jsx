@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import backgroundImage from "../assets/home-wallpaper.jpg"
+import backgroundImage from "../../assets/home-wallpaper.jpg"
 import './Home.css'
 function Home() {
     return (
