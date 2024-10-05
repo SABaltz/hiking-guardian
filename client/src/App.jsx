@@ -5,11 +5,13 @@ import Register from "./components/register/Register.jsx";
 import About from "./components/about/About.jsx";
 import Home from "./components/home/Home.jsx";
 import Footer from "./components/footer/Footer.jsx";
+import {ThemeProvider} from "@mui/material";
+import theme from "./theme.js";
 
 function App() {
     // const response = await fetch('http://localhost:3001/api/test-users', {
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <NavBar/>
             <Router>
                 <Routes>
@@ -20,7 +22,7 @@ function App() {
                 </Routes>
             </Router>
             <Footer/>
-        </>
+        </ThemeProvider>
     )
 }
 
